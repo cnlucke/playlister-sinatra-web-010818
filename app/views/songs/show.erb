@@ -1,5 +1,9 @@
 <h1>Song</h1>
 
+<% if params["msg"] %>
+<p><%= params["msg"] %></p>
+<% end %>
+
 <h3>Name: <%= @song.name %> </h3>
 <h3>Artist: <a href="/artists/<%= @song.artist.slug %>"><%= @song.artist.name %></a> </h3>
 <h3>Genres: </h3>

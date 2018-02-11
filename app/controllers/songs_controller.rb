@@ -10,7 +10,6 @@ class SongsController < Sinatra::Base
   get '/songs/new' do
     @genres = Genre.all
     @artists = Artist.all
-
     erb :'songs/new'
   end
 
@@ -39,8 +38,10 @@ class SongsController < Sinatra::Base
     end
 
     @songs = Song.all
-
-    redirect to :"songs/#{@song.slug}"
+    if @song
+      msg = "Successfully created song."
+    end
+    redirect to :"songs/#{@song.slug}?msg=#{msg}"
   end
 
   #UPDATE
@@ -52,6 +53,7 @@ class SongsController < Sinatra::Base
 
   patch '/songs/:slug' do
     @song = Song.all.find_by_slug(params["slug"])
+
     @song.update(name: params["song"]["name"])
 
     @artist = Artist.find_or_create_by(name: params["song"]["artist"])
@@ -72,7 +74,11 @@ class SongsController < Sinatra::Base
       @song.song_genres << sg
     end
 
-    redirect to "/songs/#{@song.slug}"
+    if @song
+      msg = "Successfully updated song."
+    end
+
+    redirect to :"songs/#{@song.slug}?msg=#{msg}"
   end
 
   # Show single song

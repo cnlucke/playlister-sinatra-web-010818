@@ -13,11 +13,9 @@
 <p>Choose Artist</p>
   <% @artists.each_with_index do |a, i| %>
   <p><input type="checkbox" name="song[artist]" id="Name" value="<%= a.id %>"><%= a.name %></p>
-
-    <!-- <input type="checkbox" name="song[artist][]" id="<%= a.name %>" value="<%= a.id %>" >      <%= a.name %> -->
-    <% if i % 3 == 0 && i > 0 %>
-      <br>
-    <% end %>
+    <!-- <% if i % 3 == 0 && i > 0 %>
+      <br></p>
+    <% end %> -->
   <% end %>
 <p>Or create new artist:</p>
   <p>Artist Name: <input type="text" id="Artist Name" name="artist"> </p>
